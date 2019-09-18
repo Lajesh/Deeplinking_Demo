@@ -1,0 +1,17 @@
+# Eclipse
+*.class
+gen/*
+bin/*
+
+# Android Studio
+.idea
+*.iml
+local.properties
+build/
+
+# Gradle
+build/*
+.gradle/*
+
+# Misc.
+.DS_Store

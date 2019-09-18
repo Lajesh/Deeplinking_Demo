@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "com.deeplink.demo"
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+        versionName project.VERSION_NAME
+        versionCode Integer.parseInt(project.VERSION_CODE)
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_MINIMUM)
+
+        multiDexEnabled true
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
+    google()
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:multidex:1.0.1'
+    //compile(name:'Branch-SDK-release', ext:'aar')
+    implementation ('io.branch.sdk.android:library:3.2.0') {
+        exclude module: 'answers-shim'
+    }
+    implementation 'com.google.android.gms:play-services:12.0.1'
+    implementation 'com.facebook.android:facebook-android-sdk:4.42.0'
+    implementation 'com.android.installreferrer:installreferrer:1.0'
+}
